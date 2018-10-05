@@ -14,3 +14,8 @@ def ball(x, y):
     krug = gr.Circle(gr.Point(x, y), 50)
     krug.setFill('yellow')
     krug.draw(window)
+
+def palka(x, y):
+    stick = gr.Polygon(gr.Point(x - 3, y / 2), gr.Point(x - 3, y), gr.Point(x + 3, y), gr.Point(x + 3, y / 2))
+    stick.setFill('black')
+    stick.draw(window)
