@@ -43,3 +43,9 @@ def brovi(x, y):
     eyebrow2.setOutline('black')
     eyebrow1.draw(window)
     eyebrow2.draw(window)
+
+def rot(x, y):
+    mouth = gr.Line(gr.Point(x - 20, y + 30), gr.Point(x + 20, y + 30))
+    mouth.setWidth(10)
+    mouth.setOutline('black')
+    mouth.draw(window)
