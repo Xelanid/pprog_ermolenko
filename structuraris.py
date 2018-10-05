@@ -10,4 +10,7 @@ sky = gr.Polygon(gr.Point(0, 0), gr.Point(0, 500), gr.Point(700, 500), gr.Point(
 sky.setFill('blue')
 sky.draw(window)
 
-
+def ball(x, y):
+    krug = gr.Circle(gr.Point(x, y), 50)
+    krug.setFill('yellow')
+    krug.draw(window)
