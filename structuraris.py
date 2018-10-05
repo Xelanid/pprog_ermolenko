@@ -49,3 +49,8 @@ def rot(x, y):
     mouth.setWidth(10)
     mouth.setOutline('black')
     mouth.draw(window)
+
+def oblaka(x, y, r):
+    oblako = gr.Circle(gr.Point(x, y), r)
+    oblako.setFill('gray')
+    oblako.draw(window)
