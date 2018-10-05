@@ -66,3 +66,17 @@ def oblaka(x, y, r):
     oblako4.draw(window)
     oblako5.setFill('gray')
     oblako5.draw(window)
+
+ball(500, 200)
+palka(500, 500)
+
+ball(200, 200)
+palka(200, 500)
+
+ball(350, 250)
+palka(350, 600)
+glaza(350, 250)
+brovi(350, 250)
+rot(350, 250)
+
+oblaka(150, 70, 50)
