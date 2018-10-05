@@ -33,3 +33,13 @@ def glaza(x, y):
     eye2.draw(window)
     eye1_center.draw(window)
     eye2_center.draw(window)
+
+def brovi(x, y):
+    eyebrow1 = gr.Line(gr.Point(x - 15, y - 30), gr.Point(x - 40, y - 37))
+    eyebrow2 = gr.Line(gr.Point(x + 10, y - 40), gr.Point(x + 40, y - 50))
+    eyebrow1.setWidth(10)
+    eyebrow2.setWidth(10)
+    eyebrow1.setOutline('black')
+    eyebrow2.setOutline('black')
+    eyebrow1.draw(window)
+    eyebrow2.draw(window)
