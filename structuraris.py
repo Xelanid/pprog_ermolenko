@@ -6,5 +6,8 @@ trava = gr.Polygon(gr.Point(0, 500), gr.Point(0, 700), gr.Point(700, 700), gr.Po
 trava.setFill('green')
 trava.draw(window)
 
+sky = gr.Polygon(gr.Point(0, 0), gr.Point(0, 500), gr.Point(700, 500), gr.Point(700, 0))
+sky.setFill('blue')
+sky.draw(window)
 
 
