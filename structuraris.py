@@ -1,4 +1,5 @@
 import graphics as gr
+import time
 
 window = gr.GraphWin("debri", 700, 700)
 
@@ -20,7 +21,7 @@ def palka(x, y):
     stick.setFill('black')
     stick.draw(window)
 
-def glaza(x, y):
+def eyes(x, y):
     eye1 = gr.Circle(gr.Point(x - 25, y - 15), 10)
     eye2 = gr.Circle(gr.Point(x + 22, y - 19), 15)
     eye1_center = gr.Circle(gr.Point(x - 25, y - 15), 5)
@@ -48,24 +49,23 @@ def rot(x, y):
     mouth = gr.Line(gr.Point(x - 20, y + 30), gr.Point(x + 20, y + 30))
     mouth.setWidth(10)
     mouth.setOutline('black')
-    mouth.draw(window)
 
-def oblaka(x, y, r):
-    oblako1 = gr.Circle(gr.Point(x, y), r)
-    oblako2 = gr.Circle(gr.Point(x + 30, y), r)
-    oblako3 = gr.Circle(gr.Point(x - 20, y + 20), r)
-    oblako4 = gr.Circle(gr.Point(x + 20, y + 20), r)
-    oblako5 = gr.Circle(gr.Point(x + 60, y + 20), r)
-    oblako1.setFill('gray')
-    oblako1.draw(window)
-    oblako2.setFill('gray')
-    oblako2.draw(window)
-    oblako3.setFill('gray')
-    oblako3.draw(window)
-    oblako4.setFill('gray')
-    oblako4.draw(window)
-    oblako5.setFill('gray')
-    oblako5.draw(window)
+cloud1 = gr.Circle(gr.Point(150, 70), 50)
+cloud2 = gr.Circle(gr.Point(150 + 30, 70), 50)
+cloud3 = gr.Circle(gr.Point(150 - 20, 70 + 20), 50)
+cloud4 = gr.Circle(gr.Point(150 + 20, 70 + 20), 50)
+cloud5 = gr.Circle(gr.Point(150 + 60, 70 + 20), 50)
+cloud1.setFill('gray')
+cloud1.draw(window)
+cloud2.setFill('gray')
+cloud2.draw(window)
+cloud3.setFill('gray')
+cloud3.draw(window)
+cloud4.setFill('gray')
+cloud4.draw(window)
+cloud5.setFill('gray')
+cloud5.draw(window)
+    
 
 ball(500, 200)
 palka(500, 500)
@@ -75,8 +75,29 @@ palka(200, 500)
 
 ball(350, 250)
 palka(350, 600)
-glaza(350, 250)
+eyes(350, 250)
 brovi(350, 250)
 rot(350, 250)
 
-oblaka(150, 70, 50)
+
+
+window.getMouse()
+while True==True:
+    for i in range (100):
+        time.sleep(0.01)
+        cloud1.move(4,0)
+        cloud2.move(4,0)
+        cloud3.move(4,0)
+        cloud4.move(4,0)
+        cloud5.move(4,0)
+    for i in range (100):
+        time.sleep(0.01)
+        cloud1.move(-4,0)
+        cloud2.move(-4,0)
+        cloud3.move(-4,0)
+        cloud4.move(-4,0)
+        cloud5.move(-4,0)
+
+window.getMouse()  
+window.close()
+
