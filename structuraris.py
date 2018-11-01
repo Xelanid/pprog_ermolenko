@@ -1,25 +1,28 @@
 import graphics as gr
 import time
 
-window = gr.GraphWin("debri", 700, 700)
+window = gr.GraphWin("forest", 700, 700)
 
-trava = gr.Polygon(gr.Point(0, 500), gr.Point(0, 700), gr.Point(700, 700), gr.Point(700, 500))
-trava.setFill('green')
-trava.draw(window)
+field = gr.Polygon(gr.Point(0, 500), gr.Point(0, 700), gr.Point(700, 700), gr.Point(700, 500))
+field.setFill('green')
+field.draw(window)
 
 sky = gr.Polygon(gr.Point(0, 0), gr.Point(0, 500), gr.Point(700, 500), gr.Point(700, 0))
 sky.setFill('blue')
 sky.draw(window)
 
-def ball(x, y):
-    krug = gr.Circle(gr.Point(x, y), 50)
-    krug.setFill('yellow')
-    krug.draw(window)
 
-def palka(x, y):
+def ball(x, y):
+    circle = gr.Circle(gr.Point(x, y), 50)
+    circle.setFill('yellow')
+    circle.draw(window)
+
+
+def sticks(x, y):
     stick = gr.Polygon(gr.Point(x - 3, y / 2), gr.Point(x - 3, y), gr.Point(x + 3, y), gr.Point(x + 3, y / 2))
     stick.setFill('black')
     stick.draw(window)
+
 
 def eyes(x, y):
     eye1 = gr.Circle(gr.Point(x - 25, y - 15), 10)
@@ -35,7 +38,8 @@ def eyes(x, y):
     eye1_center.draw(window)
     eye2_center.draw(window)
 
-def brovi(x, y):
+
+def brow(x, y):
     eyebrow1 = gr.Line(gr.Point(x - 15, y - 30), gr.Point(x - 40, y - 37))
     eyebrow2 = gr.Line(gr.Point(x + 10, y - 40), gr.Point(x + 40, y - 50))
     eyebrow1.setWidth(10)
@@ -45,10 +49,12 @@ def brovi(x, y):
     eyebrow1.draw(window)
     eyebrow2.draw(window)
 
+
 def rot(x, y):
     mouth = gr.Line(gr.Point(x - 20, y + 30), gr.Point(x + 20, y + 30))
     mouth.setWidth(10)
     mouth.setOutline('black')
+
 
 def clouds(x, y, r):
     cloud1 = gr.Circle(gr.Point(150, 70), 50)
@@ -56,23 +62,23 @@ def clouds(x, y, r):
     cloud3 = gr.Circle(gr.Point(150 - 20, 70 + 20), 50)
     cloud4 = gr.Circle(gr.Point(150 + 20, 70 + 20), 50)
     cloud5 = gr.Circle(gr.Point(150 + 60, 70 + 20), 50)
-    mascloud = [cloud1, cloud2, cloud3, cloud4, cloud5]
-    
+    cloud = [cloud1, cloud2, cloud3, cloud4, cloud5]
     i = 1
     for i in range(5):
-        mascloud[i].setFill('gray')
-        mascloud[i].draw(window)    
+        cloud[i].setFill('gray')
+        cloud[i].draw(window)
+
 
 ball(500, 200)
-palka(500, 500)
+sticks(500, 500)
 
 ball(200, 200)
-palka(200, 500)
+sticks(200, 500)
 
 ball(350, 250)
-palka(350, 600)
+sticks(350, 600)
 eyes(350, 250)
-brovi(350, 250)
+brow(350, 250)
 rot(350, 250)
 
 clouds(150, 70, 50)
