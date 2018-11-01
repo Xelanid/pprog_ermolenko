@@ -50,22 +50,18 @@ def rot(x, y):
     mouth.setWidth(10)
     mouth.setOutline('black')
 
-cloud1 = gr.Circle(gr.Point(150, 70), 50)
-cloud2 = gr.Circle(gr.Point(150 + 30, 70), 50)
-cloud3 = gr.Circle(gr.Point(150 - 20, 70 + 20), 50)
-cloud4 = gr.Circle(gr.Point(150 + 20, 70 + 20), 50)
-cloud5 = gr.Circle(gr.Point(150 + 60, 70 + 20), 50)
-cloud1.setFill('gray')
-cloud1.draw(window)
-cloud2.setFill('gray')
-cloud2.draw(window)
-cloud3.setFill('gray')
-cloud3.draw(window)
-cloud4.setFill('gray')
-cloud4.draw(window)
-cloud5.setFill('gray')
-cloud5.draw(window)
+def clouds(x, y, r):
+    cloud1 = gr.Circle(gr.Point(150, 70), 50)
+    cloud2 = gr.Circle(gr.Point(150 + 30, 70), 50)
+    cloud3 = gr.Circle(gr.Point(150 - 20, 70 + 20), 50)
+    cloud4 = gr.Circle(gr.Point(150 + 20, 70 + 20), 50)
+    cloud5 = gr.Circle(gr.Point(150 + 60, 70 + 20), 50)
+    mascloud = [cloud1, cloud2, cloud3, cloud4, cloud5]
     
+    i = 1
+    for i in range(5):
+        mascloud[i].setFill('gray')
+        mascloud[i].draw(window)    
 
 ball(500, 200)
 palka(500, 500)
@@ -79,24 +75,7 @@ eyes(350, 250)
 brovi(350, 250)
 rot(350, 250)
 
-
-
-window.getMouse()
-while True==True:
-    for i in range (100):
-        time.sleep(0.01)
-        cloud1.move(4,0)
-        cloud2.move(4,0)
-        cloud3.move(4,0)
-        cloud4.move(4,0)
-        cloud5.move(4,0)
-    for i in range (100):
-        time.sleep(0.01)
-        cloud1.move(-4,0)
-        cloud2.move(-4,0)
-        cloud3.move(-4,0)
-        cloud4.move(-4,0)
-        cloud5.move(-4,0)
+clouds(150, 70, 50)
 
 window.getMouse()  
 window.close()
