@@ -80,7 +80,6 @@ class Gun:
         new_ball.dy = -self.power * math.sin(self.angle)
         balls.append(new_ball)
         self.on = 0
-        self.power = 10
 
     def targetting(self, event=0):
         if event:
