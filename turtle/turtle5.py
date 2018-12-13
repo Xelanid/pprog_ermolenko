@@ -1,18 +1,16 @@
 import turtle
-t = turtle.Turtle()
-t.shape('turtle')
-i = 20
 
-for _ in range(10):
-    for _ in range(4):
-        turtle.forward(i)
-        turtle.left(90)
-
-    i = i + 10
-    t.penup()
-    t.right(90)
-    t.forward(5)
-    t.right(90)
-    t.forward(5)
-    t.right(180)
-    t.pendown()
+turtle.shape('turtle')
+length = 20
+for step in range(10):
+	for step in range(4):
+		turtle.fd(length)
+		turtle.rt(90)
+	length += 10
+	turtle.penup()
+	turtle.lt(90)
+	turtle.fd(5)
+	turtle.rt(90)
+	turtle.backward(5)
+	turtle.pendown()
+	

@@ -1,9 +1,9 @@
 import turtle
 t = turtle.Turtle()
 t.shape('turtle')
-i = 20
+length = 20
 
-for _ in range(50):
-    t.forward(i)
+for i in range(50):
+    t.forward(length)
     t.left(90)
-    i = i + 10
+    length += 10

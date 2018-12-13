@@ -1,9 +1,9 @@
 import turtle
 t = turtle.Turtle()
 t.shape('turtle')
-i = 1
+step = 1
 
-for _ in range(200):
-    t.forward(i)
+for j in range(200):
+    t.forward(step)
     t.left(20)
-    i = i + 0.1
+    step += 0.1

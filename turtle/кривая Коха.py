@@ -18,7 +18,7 @@ def draw(l, n):
     t.right(120)
     draw(a, n - 1)
     t.left(60)
-    draw(a, n-1)
+    draw(a, n - 1)
 
 
 draw(200, 3)
