@@ -10,24 +10,21 @@ height = 800
 
 canv = Canvas(root, bg='white')
 canv.pack(fill=BOTH, expand=1)
-colors = ['red', 'orange', 'yellow', 'green', 'blue', 'gray', 'black']
+colors = ['red', 'orange', 'yellow', 'green', 'blue', 'gray', 'black', 'cyan']
 
 
 class Ball:
-    def __init__(self, x=40, y=450):
+    def __init__(self, x=20, y=450):
         self.x = x
         self.y = y
         self.r = 10
         self.color = choice(colors)
         self.circle = canv.create_oval(self.x - self.r, self.y - self.r, self.x + self.r, self.y + self.r,
                                        fill=self.color)
-        #self.result = canv.create_text(self.x, self.y, text=self.points)
         self.live = 1
 
     def coord(self):
         canv.coords(self.circle, self.x - self.r, self.y - self.r, self.x + self.r, self.y + self.r)
-        #canv.coords(self.result, self.x, self.y)
-        #canv.itemconfig(self.result, text = self.points)
 
     def move(self):
         if self.y <= 500:
@@ -37,7 +34,7 @@ class Ball:
             self.dx *= 0.99
             self.coord()
         else:
-            if self.dx**2+self.dy**2 > 10:
+            if self.dx**2 + self.dy**2 > 10:
                 self.dy = -self.dy/2
                 self.dx = self.dx/2
                 self.y = 499
@@ -55,9 +52,6 @@ class Ball:
             return True
         else:
             return False
-        #a = abs(self.x + self.dx - ball.x)
-        #b = abs(self.y + self.dy - ball.y)
-        #return (a * a + b * b) ** 0.5 <= self.r + ball.r
 
 
 class Gun:
@@ -108,6 +102,10 @@ class target():
         self.point = canv.create_text(30, 30, text=self.points, font='28')
         self.new_target()
         self.live = 1
+        self.x = 0
+        self.y = 0
+        self.r = 0
+        self.color = ""
 
     def new_target(self):
         x = self.x = rnd(600, 780)
