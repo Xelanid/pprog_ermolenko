@@ -1,79 +1,78 @@
-import sys
 import pygame
+import random as rnd
+                                        #глобальные переменные
+BACKGROUND = (0, 0, 0)
+RADIUS = 20
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+VELOCITY = 0
+NUMBER_OF_BALLS = 10
 
-pygame.init()
+def speed_count(v_onx, v_ony):          #функция для расчета скорости
+    v_final = (v_onx ** 2 + v_ony ** 2) ** 0.5
+    return v_final
 
-width = 800
-height = 500
 
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Ball')
-clock = pygame.time.Clock()
+class Ball:                             #класс для основных характеристик шаров
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+        self.dx = 0
+        self.dy = 0
+        self.color = (100, 100, 100)
+        self.radius = RADIUS
 
-coord_x = 30
-coord_y = 30
-speedx = 50
-speedy = 50
-r = 20
-x_second = 300
-y_second = 400
-speedx_second = 165
-speedy_second = 165
 
-while True:
-    dt = clock.tick(50) / 1000.0
+def create_ball():                      #функция для создания шара
+    ball = Ball()
+    ball.x = rnd.randrange(ball.radius, SCREEN_WIDTH - ball.radius)
+    ball.y = rnd.randrange(ball.radius, SCREEN_HEIGHT - ball.radius)
+    ball.dx = rnd.randrange(1, 7)
+    ball.dy = rnd.randrange(1, 7)
+    VELOCITY = speed_count(ball.dx, ball.dy)*30     #определение цвета...
+    if VELOCITY > 255:                              #...от скорости
+        VELOCITY = 255
+    ball.color = (VELOCITY, 100, 100)
+    return ball
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
 
-    #отталкивание шариков
-    if coord_x >= width - r or coord_x < r:                    
-        speedx = -speedx
-    if coord_y >= height - r or coord_y < r:
-        speedy = -speedy
+def main():
+    pygame.init()
+    size = [SCREEN_WIDTH, SCREEN_HEIGHT]
+    screen = pygame.display.set_mode(size)
+    pygame.display.set_caption("Balls")
+    clock = pygame.time.Clock()
+    ball_list = []
+    game_process = True
+    for i in range (NUMBER_OF_BALLS):
+        ball = create_ball()
+        ball_list.append(ball)
+    while game_process:                             #бесконечный цикл
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_process = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_n:
+                    ball = make_ball()
+                    ball_list.append(ball)
+        for ball in ball_list:
+            ball.x += ball.dx
+            ball.y += ball.dy
 
-    if x_second >= width - r or x_second < r:      
-        speedx_second = -speedx_second
-    if y_second >= height - r or y_second < r:
-        speedy_second = -speedy_second
 
-    #прописываем ускорение по кнопкам
-    if pygame.key.get_pressed()[pygame.K_UP]:      
-        speedy-=5
-    if pygame.key.get_pressed()[pygame.K_DOWN]:
-        speedy+=5
-    if pygame.key.get_pressed()[pygame.K_LEFT]:
-        speedx-=5
-    if pygame.key.get_pressed()[pygame.K_RIGHT]:
-        speedx+=5
+            if ball.y > SCREEN_HEIGHT - ball.radius or ball.y < ball.radius:
+                ball.dy = - ball.dy
+            if ball.x > SCREEN_WIDTH - ball.radius or ball.x < ball.radius:
+                ball.dx = - ball.dx
 
-    #Добавим сопротивление воздуха
-    speedx *= 0.97                                    
-    speedy *= 0.97
+        screen.fill(BACKGROUND)
 
-    #И определение цвета
-    rgb_red = (speedx ** 2 + speedy ** 2) ** 0.5                    
-    if rgb_red > 255:
-        rgb_red = 255
+        for ball in ball_list:
+            pygame.draw.circle(screen, ball.color,
+                            [ball.x, ball.y], ball.radius)
+        clock.tick(60)
+        pygame.display.flip()
 
-    balls_dist = (abs(coord_x - x_second) ** 2 + abs(coord_y - y_second) ** 2) ** 0.5
-    if balls_dist<2*r:
-        lenx = abs(speedx - vx_second)
-        leny = abs(speedy - y_second)
-        speedy1 = speedy - 2 * speedy * leny / ((speedx ** 2 + speedy ** 2) ** 0.5)
-        speedx1 = speedx - 2 * speedx * leny/ ((speedx ** 2 + speedy ** 2) ** 0.5)
-        speedy_second -= speedy * leny/((speedx_second ** 2 + speedy_second ** 2) ** 0.5)
-        speedx_second -= speedx * leny/((speedx_second ** 2 + speedy_second ** 2) ** 0.5)
 
-    coord_x += speedx * dt
-    coord_y += speedy * dt
-
-    x_second += speedx_second * dt
-    y_second += speedy_second * dt
-
-    screen.fill((0, 0, 0))
-    pygame.draw.circle(screen, (int(rgb_red), 100, 100), (int(coord_x), int(coord_y)), int(r))
-    pygame.draw.circle(screen, (235, 100, 100), (int(x_second), int(y_second)), int(r))
-
-    pygame.display.flip()
+if __name__ == "__main__":
+     main()
